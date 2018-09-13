@@ -10,11 +10,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
-import java.io.*;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText v1,v2;
+    EditText v1,v2,oper;
     Button b1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +33,12 @@ public class MainActivity extends AppCompatActivity {
 
         v1 = (EditText) findViewById(R.id.value1);
         v2 = (EditText) findViewById(R.id.value2);
+        oper = (EditText) findViewById(R.id.operator);
         b1 = (Button) findViewById(R.id.result1);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Calculate();
             }
         });
 
@@ -67,12 +67,38 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void Onclick(View view){
+    public void Calculate(){
         String a = v1.getText().toString();
         int aa = Integer.valueOf(a);
         int b = Integer.valueOf(v2.getText().toString());
-        int resulta = b+aa;
+        String operator = oper.getText().toString();
+
+        // why i am declaring int result here ?
+
+        int resulto = 1;
+
+        switch (operator){
+            case "+":
+                resulto = aa + b;
+                break;
+            case "-":
+                resulto = aa - b;
+                break;
+            case "/":
+                resulto = aa / b;
+                break;
+            case "*":
+                resulto = aa * b;
+                break;
+        }
+
+
+
         EditText re = (EditText) findViewById(R.id.result);
-        re.setText(String.valueOf(resulta));
+        re.setText(String.valueOf(resulto));
     }
+
+
+
+
 }
